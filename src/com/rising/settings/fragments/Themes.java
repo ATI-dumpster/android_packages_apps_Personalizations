@@ -22,19 +22,23 @@ import android.provider.Settings;
 
 import androidx.preference.Preference;
 
+import com.android.settingslib.core.AbstractPreferenceController;
+import com.android.settingslib.core.lifecycle.Lifecycle;
 import com.android.internal.logging.nano.MetricsProto;
+import androidx.fragment.app.Fragment;
 import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
 import com.android.settings.search.BaseSearchIndexProvider;
 import com.android.settings.utils.SystemRestartUtils;
 import com.android.settingslib.search.SearchIndexable;
+import com.android.settings.dashboard.DashboardFragment;
 
 import com.android.internal.util.android.ThemeUtils;
 
 import java.util.List;
 
 @SearchIndexable
-public class Themes extends SettingsPreferenceFragment implements
+public class Themes extends DashboardFragment implements
         Preference.OnPreferenceChangeListener {
 
     public static final String TAG = "Themes";
@@ -42,6 +46,7 @@ public class Themes extends SettingsPreferenceFragment implements
     private static final String KEY_NOTIF_STYLE = "notification_style";
     private static final String KEY_POWERMENU_STYLE = "powermenu_style";
     private static final String KEY_HIDE_IME_STYLE = "hide_ime_space_style";
+    private static final String CUSTOM_FONT_PREFERENCE_KEY = "custom_font_preference";
 
     private static final String[] POWER_MENU_OVERLAYS = {
             "com.android.theme.powermenu.cyberpunk",
@@ -167,6 +172,29 @@ public class Themes extends SettingsPreferenceFragment implements
         }
         return false;
     }
+
+
+    @Override
+     protected String getLogTag() {
+         return TAG;
+     }
+
+     @Override
+     protected int getPreferenceScreenResId() {
+         return R.xml.rising_settings_themes;
+     }
+
+     @Override
+     protected List<AbstractPreferenceController> createPreferenceControllers(Context context) {
+         return buildPreferenceControllers(context, getSettingsLifecycle(), this);
+     }
+
+     private static List<AbstractPreferenceController> buildPreferenceControllers(
+             Context context, Lifecycle lifecycle, ThemeSettings fragment) {
+         final List<AbstractPreferenceController> controllers = new ArrayList<>();
+         controllers.add(new CustomFontPreferenceController(context, CUSTOM_FONT_PREFERENCE_KEY, fragment, lifecycle));
+         return controllers;
+     }
 
     @Override
     public int getMetricsCategory() {

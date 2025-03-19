@@ -16,10 +16,22 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
-    <string name="apply_text">uff app</string>
-    <string name="font_preview_title">uff 3</string>
-    <string name="font_picker_default">uff</string>
-    <string name="font_selector_title">uff 2</string>
+    <!-- Font -->
+     <string name="font_settings">Font Customizations</string>
+     <string name="font_preference_title">Headline / Body font</string>
+     <string name="custom_font_preference_title">Custom Headline / Body font</string>
+     <string name="custom_font_preference_footer_message">Reboot after selecting a font to take effect</string>
+     <string name="cannot_resolve_activity">Unable to find a suitable activity to perform this action!</string>
+     <string name="invalid_font_file">Font file does not have valid postscript table</string>
+     <string name="failed_to_update_font">Failed to update font</string>
+     <string name="failed_to_copy_file_to_cache">Failed to copy font to cache</string>
+
+     <string name="custom_font_preference_title">Custom Headline / Body font</string>
+     <string name="custom_font_preference_footer_message">Reboot after selecting a font to take effect</string>
+     <string name="cannot_resolve_activity">Unable to find a suitable activity to perform this action!</string>
+     <string name="invalid_font_file">Font file does not have valid postscript table</string>
+     <string name="failed_to_update_font">Failed to update font</string>
+     <string name="failed_to_copy_file_to_cache">Failed to copy font to cache</string>
 
     <!-- Statusbar Custom color -->
     <string name="status_bar_logo_use_custom_color_title">Status bar logo custom color</string>

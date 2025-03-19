@@ -44,6 +44,10 @@
             android:fragment="com.rising.settings.fragments.BrightnessSlider"
             lineage:position="top" />
 
+        <Preference
+            android:key="custom_font_preference"
+            android:title="@string/custom_font_preference_title" />
+
         <!-- Hide NavBar -->      
         <com.android.settings.preferences.SystemSettingListPreference
              android:key="hide_ime_space_style"
