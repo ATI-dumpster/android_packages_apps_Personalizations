@@ -15,6 +15,12 @@
      limitations under the License.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+    <string name="apply_text">uff app</string>
+    <string name="font_preview_title">uff 3</string>
+    <string name="font_picker_default">uff</string>
+    <string name="font_selector_title">uff 2</string>
+
     <!-- Statusbar Custom color -->
     <string name="status_bar_logo_use_custom_color_title">Status bar logo custom color</string>
     <string name="status_bar_logo_use_custom_color_summary">Enable Status bar logo custom color</string>

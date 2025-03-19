@@ -16,6 +16,7 @@
 package com.rising.settings.fragments.ui.fonts;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
@@ -28,6 +29,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
@@ -53,6 +55,7 @@ public class FontPickerPreview extends SettingsPreferenceFragment {
     private TextView previewText;
     private FontManager fontManager;
     private ExtendedFloatingActionButton applyFab;
+    private Button customFontButton;
     private int currentFontPosition = -1;
 
     @Override
@@ -68,6 +71,7 @@ public class FontPickerPreview extends SettingsPreferenceFragment {
         
         fontSelector = rootView.findViewById(R.id.font_selector);
         previewText = rootView.findViewById(R.id.font_preview_text);
+        customFontButton = rootView.findViewById(R.id.custom_font_button);
         
         String text = previewText.getText().toString();
         SpannableString spannableString = new SpannableString(text);
@@ -133,6 +137,12 @@ public class FontPickerPreview extends SettingsPreferenceFragment {
             }
         });
 
+        // Add custom font button click listener
+        customFontButton.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), CustomFontPickerActivity.class);
+            startActivity(intent);
+        });
+
         String currentFontPackage = fontManager.getCurrentFontPackage();
         currentFontPosition = fontPackageNames.indexOf(currentFontPackage);
         if (currentFontPosition != -1) {
@@ -160,5 +170,18 @@ public class FontPickerPreview extends SettingsPreferenceFragment {
     @Override
     public int getMetricsCategory() {
         return MetricsProto.MetricsEvent.VIEW_UNKNOWN;
+    }
+    
+    @Override
+    public void onResume() {
+        super.onResume();
+        // Refresh the list when coming back from custom font picker
+        List<String> fontPackageNames = fontManager.getAllFontPackages();
+        String currentFontPackage = fontManager.getCurrentFontPackage();
+        currentFontPosition = fontPackageNames.indexOf(currentFontPackage);
+        if (currentFontPosition != -1) {
+            fontSelector.setText(fontManager.getLabel(getContext(), fontPackageNames.get(currentFontPosition)));
+            applyFontToPreview(fontPackageNames.get(currentFontPosition));
+        }
     }
 }
