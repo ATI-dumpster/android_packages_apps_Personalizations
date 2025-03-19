@@ -30,6 +30,7 @@
  import android.provider.Settings
  import android.util.Log
  import android.widget.Toast
+ import com.rising.settings.fragments.Themes
  
  import androidx.activity.result.ActivityResultLauncher
  import androidx.activity.result.contract.ActivityResultContracts.OpenDocument
@@ -61,7 +62,7 @@
  class CustomFontPreferenceController(
      context: Context,
      key: String,
-     host: ThemeSettings?,
+     host: Themes?,
      lifecycle: Lifecycle?,
  ) : BasePreferenceController(context, key),
      LifecycleEventObserver {
@@ -149,7 +150,7 @@
  
      private suspend fun updateFont(uri: Uri) {
          val cacheFile = withContext(Dispatchers.IO) {
-             mContext.contentResolver.openFileDescriptor(uri, "r" /** RO mode */).use { fd ->
+             mContext.contentResolver.openFileDescriptor(uri, "r" /** RO mode */)?.use { fd ->
                  runCatching {
                      copyFileToCache(fd)
                  }.getOrNull()

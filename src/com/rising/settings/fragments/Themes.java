@@ -34,8 +34,10 @@ import com.android.settingslib.search.SearchIndexable;
 import com.android.settings.dashboard.DashboardFragment;
 
 import com.android.internal.util.android.ThemeUtils;
+import com.rising.settings.fragments.ui.fonts.CustomFontPreferenceController;
 
 import java.util.List;
+import java.util.ArrayList;
 
 @SearchIndexable
 public class Themes extends DashboardFragment implements
@@ -190,7 +192,7 @@ public class Themes extends DashboardFragment implements
      }
 
      private static List<AbstractPreferenceController> buildPreferenceControllers(
-             Context context, Lifecycle lifecycle, ThemeSettings fragment) {
+             Context context, Lifecycle lifecycle, Themes fragment) {
          final List<AbstractPreferenceController> controllers = new ArrayList<>();
          controllers.add(new CustomFontPreferenceController(context, CUSTOM_FONT_PREFERENCE_KEY, fragment, lifecycle));
          return controllers;
