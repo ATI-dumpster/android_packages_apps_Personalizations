@@ -110,12 +110,12 @@
              return if (isCustomFontMode) {
                  AVAILABLE
              } else {
-                 DISABLED_DEPENDENT_SETTING
+                 AVAILABLE
              }
          } catch (e: JSONException) {
              Log.e(TAG, "JSONException while parsing json, ${e.message}")
          }
-         return CONDITIONALLY_UNAVAILABLE
+         return AVAILABLE
      }
  
      override fun getSummary(): CharSequence? {
